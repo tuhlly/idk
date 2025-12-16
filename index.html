@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How are you feeling? - Medical Information Search</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>How are you feeling?</h1>
+            <p class="subtitle">Enter your symptoms separated by commas to find relevant medical information</p>
+            <p class="disclaimer">⚠️ This tool is for informational purposes only and does not replace professional medical advice. Always consult a healthcare provider for diagnosis and treatment.</p>
+        </header>
+
+        <div class="search-section">
+            <div class="search-box">
+                <label for="imageUpload" class="upload-icon" title="Upload file or image">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                        <polyline points="21 15 16 10 5 21"></polyline>
+                    </svg>
+                </label>
+                <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                <input 
+                    type="text" 
+                    id="symptomInput" 
+                    placeholder="Enter symptoms separated by commas (e.g., fever, headache, cough, nausea)"
+                    autocomplete="off"
+                >
+                <button id="searchBtn" class="search-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                    Search
+                </button>
+            </div>
+            <div class="image-preview" id="imagePreview" style="display: none;">
+                <img id="previewImg" src="" alt="Preview">
+                <button id="removeImage" class="remove-btn">×</button>
+            </div>
+            <div class="suggestions" id="suggestions" style="display: none;"></div>
+        </div>
+
+        <div class="results-section" id="resultsSection" style="display: none;">
+            <div class="results-header">
+                <h2>Possible Conditions</h2>
+                <div class="sort-container">
+                    <label for="sortBy" class="sort-label">Sort by:</label>
+                    <select id="sortBy" class="sort-dropdown">
+                        <option value="relevance">Relevance (Best Match)</option>
+                        <option value="severity">Severity</option>
+                        <option value="alphabetical">Alphabetical</option>
+                        <option value="matchCount">Number of Matches</option>
+                    </select>
+                </div>
+            </div>
+            <div class="results-container" id="resultsContainer"></div>
+        </div>
+
+        <div class="image-results" id="imageResults" style="display: none;">
+            <div class="image-result-card">
+                <p class="image-disclaimer">⚠️ Image analysis is not 100% accurate and should not be used as a substitute for professional medical diagnosis. Results are based on basic color pattern analysis and may not correctly identify medical conditions.</p>
+                <p id="imageResultText"></p>
+            </div>
+        </div>
+
+        <div class="no-results" id="noResults" style="display: none;">
+            <p>No matching conditions found. Please try different symptoms or consult a healthcare provider.</p>
+        </div>
+    </div>
+
+    <script src="diseases.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
